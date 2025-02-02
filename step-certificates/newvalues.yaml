@@ -1,0 +1,142 @@
+step-certificates:
+  image:
+    repository: cr.step.sm/smallstep/step-ca
+    initContainerRepository: docker.io/library/busybox:1.36.1
+    tag: 0.25.3-rc7
+  bootstrap:
+    image:
+      repository: cr.smallstep.com/smallstep/step-ca-bootstrap
+      tag: 0.22.0
+    enabled: false
+    configmaps: false
+  inject:
+    enabled: false
+  existingSecrets:
+    enabled: true
+    ca: true
+    data:
+      # ca.key: "/secrets/ca.key" # Example; adjust the path as needed
+      ca.key: |
+        -----BEGIN PRIVATE KEY-----
+        MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCvLvXs6SpGRvPw
+        GxmWzoCjQ8tz9XsNuaI5OU2wlv9MwZv+AuMLhYeKPi/69mTBtg1WxXY3H7iwPpTC
+        SMo8fWfFaypT5rWMqrfUUpgL7sCu003SRslizezRY+4b3MHVKkzl6QBMc2cpW5/6
+        BTv51DMSWeD7N8F3UfcPg3d4wyhvP67ABSa2Lj8xa/hzya7k7y01M67hSOZ5++5O
+        bJ4zM70Z+fXqJ0/TNrrzOjdyYotLf7YKrrUB4X+o1Gwxn0zvQ/4INBC1jT30tMR1
+        ELECfHt+H2Mf63alKsigVNtw88bbrMkzXdI2KXgoRoz0k5UrXlfP1Esk5jM64Vri
+        0WLMtNFNAgMBAAECggEAFgQQl47BB5Z8qzD4sQ1wOLR5MfBIn/Ozqb3kH9yGJrMR
+        Q+XAe27zVwIUPRWwmXCj8gL8ZZaYuxuOTfFgayQ2gabDacptiAlfc3FS1vMRJ5d6
+        KQJI5mArUjBdGQbQHFZF1kIHTdRWA2pWq1DzleTfaz+86M17xJ9aLYqv3c8m+n4A
+        mOp+8II9jQ+AHtgZFZ/hMYlYlxyu0pm0aPOEhoDQVk+cml9yUjMrRhdLHR56OBxp
+        7d+AtUTOqrJKUgdWaTXOYppXfp4uUvkp+uU9K/gxTozqP5Q9DLd8TQ9y9tbredFR
+        mYI+mCQg9orq0OSCQ4uPjOcE/8OJ6j4peU4hDxeOiQKBgQDqxQYM+Npvposyum68
+        5qavCR9TOGJuHiTW9P/4iDLycALWnMmmdU2dzA3w+pNXn4mJWiOXfqiCXpUCMj2t
+        PrQJYS2SwGCY4NpaYxyjSPI9eM/KQhe2/dPNuJ0KTHy7bmdaesgRyyu0z7HYQnch
+        R6WwOHqouBpxDoQ7G69za3JF5QKBgQC/BoByCTF2j4Pyon7O+O4uguf6BEH0YBUB
+        pi8U/ObT2EV/nFAYkvXVxcxjbHgnVk+Mx2AWXO/PADodMQmxwzB18PhsoXUBetgX
+        p3GVmfr37kmor/86f9NWzEfB5zqmawwml7R3H0KzL45kjnMqunUeN5t4LPO9dKKS
+        A227pwUnSQKBgFs5uAIuaOLdulU58HHixn5ZcxypWkYj3HjStuxiMDnYoKG4Rvsx
+        tblNY1VyaPKxgYYnypDBnMUb75bs4t6A8QB8DHNr4Z1GMlLRFH22iLquST/0srZe
+        p4DW7d7knctPOUYFU9zmL9OQqTC5kwURjCaPq8oHz+6Cj4tQVLrq03qpAoGAY8RN
+        iUFr5/QEgdCEUiyImRoddeKLX8perkHRDTEYjUPC6GcHHg6C/mcT3ElmZ4UYfvoS
+        IRvg00fXEi/uVD0RLkfwNywMI/24poH5PJzzClIVfliNAEyKYCbIw2i0pP37lpxc
+        0GovN856m+IaHBLN4D5CoH05v5UO4xuPUBZnBqECgYAbqDTjt52gOInTIK9WjXgk
+        1ivU055RII0d7nh2WcJuj83hsqElHM7ditIPXfkxlhC5UYPc9rkvbJPkbO+hGebH
+        q9eePVmuZ87KXqo5f5b0EIgBF0vJw/H54qIfX6FEuhPGGDfQSh3f6naZJu7UWpxF
+        yCmG/b+1XUB0McTn9xQuyQ==
+        -----END PRIVATE KEY-----
+      # password: "/secrets/password" # Example; adjust the path as needed
+      # root_ca_key: "/secrets/root_ca_key" # Example; adjust the path as needed
+      root_ca_key: |
+        -----BEGIN ENCRYPTED PRIVATE KEY-----
+        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
+        -----END ENCRYPTED PRIVATE KEY-----
+  ingress:
+    annotations:
+      nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+      nginx.ingress.kubernetes.io/cors-allow-origin: "https://step.networxs.local"
+      nginx.ingress.kubernetes.io/cors-expose-headers: "Replay-Nonce, Location"
+      nginx.ingress.kubernetes.io/enable-cors: "true"
+      nginx.ingress.kubernetes.io/ssl-redirect: "false"
+      nginx.ingress.kubernetes.io/use-regex: "true"
+    enabled: true
+    hosts:
+      - host: "step.networxs.local"
+        paths:
+          - "/version"
+          - "/roots.pem"
+          - "/root/(.*)"
+          - "/federation"
+          - "/provisioners(.*)"
+          - "/crl"
+          - "/acme/(.*)"
+        ingressClassName: nginx
+        tls:
+          - hosts: ["step.networxs.local"]
+        secretName: "acme-tls"
+  ca:
+    env:
+      - name: STEPDEBUG
+        value: "1"
+
+  # stepConfig:
+  #   enabled: true
+  #   dnsName: "acme.local.domain" # Adjust the domain as needed
+  #   additionalDNSNames:
+  #     - "localhost"
+  #   federatedRoots:
+  #     - "/home/step/certs/ca.crt"
+  #     # Add more paths for federated roots if needed
+
+  #   authority:
+  #     jwk: "/secrets/jwk_provisioner.json" # Adjust the path as needed
+  #     acme:
+  #       name: "keycloakteams"
+  #       dpop:
+  #         key: "/secrets/dpop_key.pem" # Adjust the path as needed
+  #         wireDomain: "local.domain" # Adjust the domain as needed
+  #       oidc:
+  #         clientId: "wireapp"
+  #         discoveryBaseUrl: ""
+  #         issuerUrl: "https://keycloak.example.com/auth/realms/master?client_id=wireapp" # URL to the oidc issuer
+  #         jwksUrl: "https://keycloak.example.com/auth/realms/master/protocol/openid-connect/certs" # URL where issuer publishes its JSON Web Key Set
+  #       x509:
+  #         organization: "local.domain"
+
+  # existingCerts:
+  #   enabled: true
+  #   data:
+  #     ca.crt: "/certs/ca.crt"
+  #     root_ca.crt: "/certs/root_ca.crt'"
+  #     # Add cross certificates if available
+
+  # caPassword:
+  #   enabled: true
+  #   password: "/secrets/password"

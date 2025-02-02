@@ -1,0 +1,35 @@
+step-certificates:
+  image:
+    repository: cr.smallstep.com/smallstep/step-ca-bootstrap
+    tag: 0.22.0
+bootstrap:
+  enabled: false
+  configmaps: false
+inject:
+  enabled: false
+existingSecrets:
+  enabled: true
+  ca: true
+ingress:
+  annotations:
+    nginx.ingress.kubernetes.io/backend-protocol: HTTPS
+    nginx.ingress.kubernetes.io/cors-allow-origin: https://
+    nginx.ingress.kubernetes.io/cors-expose-headers: Replay-Nonce, Location
+    nginx.ingress.kubernetes.io/enable-cors: true
+    nginx.ingress.kubernetes.io/ssl-redirect: false
+    nginx.ingress.kubernetes.io/use-regex: true
+  enabled: true
+  hosts:
+    - host: "acme.alpha.example.com"
+      paths:
+        - "/version"
+        - "/roots.pem"
+        - "/root/(.*)"
+        - "/federation"
+        - "/provisioners(.*)"
+        - "/crl"
+        - "/acme/(.*)"
+      ingressClassName: nginx
+      tls:
+        - hosts: [acme.alpha.example.com]
+      secretName: "smallstep-step-certificates-ingress-cert"

@@ -1,0 +1,314 @@
+nginx:
+  existingServerBlockConfigmap: "smallstep-accomp-server-block"
+
+  service:
+    type: ClusterIP
+
+  ingress:
+    enabled: true
+    ingressClassName: "nginx"
+
+    hostname: "step.networxs.local"
+    path: "/proxyCrl"
+    pathType: "Prefix"
+
+    extraTls:
+      - hosts: ["step.networxs.local"]
+        secretName: "smallstep-step-certificates-ingress-cert"
+
+upstreams:
+  enabled: true
+  dnsResolver: 192.168.178.23
+
+  # Note: include the smallstep host of the own domain here as well
+  # proxiedHosts: []
+  proxiedHosts:
+    - step.networxs.local
+  #   - acme.beta.example.com
+  #   - acme.gamma.example.com
+
+caPassword:
+  enabled: true
+  password: 'Rae4Xaof'
+
+existingSecrets:
+  enabled: true
+  data:
+    ca.key: |
+      -----BEGIN PRIVATE KEY-----
+      MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDsUYC0ZtQW156u
+      n8co5UnQy93jGZzVn34WkKL7Gqq8ywL/1tq6fjWZvwss9RX76nGeN8tLr+sDzzuj
+      FUAZKMVC99s67Z/6fmKW3Mpn1AS/fs2+5NG6mvgwQL/faC1OxpJXMLmtAzPBy8wj
+      jfRoECYae5S1Ib83xa48LysZ3qfIjrDM38/1Nz17pfwp1n8qjvF7NprfT7urMVwn
+      xK4sfqqieYyBj4Uy961AIfFzwBzZC6iaw9jQjp7v1wF55iiUAZP4GNbEYA0x/UkL
+      Gk5myzvyAtK8/dAdn7OrktqqZnSHfpc+UfjydMx3U5T2YG7Yz2+0RkbxCQa4iPrf
+      r8ua/LgxAgMBAAECggEADMtn3LyRgJAZgQpZCdOKMNIM2CIXnfBF7xpTHKXHtzOF
+      nMzo6D5zj/iqNfup/krl7mNGcDlcz8a9S5nXr9UHgxXwymq5peIIW/MlyUPPIwAO
+      SybP3RrNU615xfJ5u4FgRHS4pM+e0oACdC1YHXc8XOQye7ERTYd4JL2IB51It8C5
+      WwVWylqLn1q7Z6HK5PIPTqNGuR0A2KUZZBR+vj7vlmJ84I2QI+LYCa4Bd0RZvDga
+      O6MnvJmyQS5CzCmOpphbKWS2xGss0gXNQfCd66IUOMy3MPQeUU1RfFgHTGj0j9HQ
+      D/1OLWzJTZ8GQJDQzKsRF9305kekZN4sc7E/s95+AQKBgQD1Y5CmcW48Gc8YU3Wv
+      sUXOHZt3tGPlM9dSfCp9SqhZ/mu/OJtZYcwtdzDpF//eZ4GReJeMJ/1Rr1jC5yOX
+      M5YUGoYtaQwWVmpNCp5PA4Up/mTX7tjQkFDczOKcI+bRPYAYdcQbOk3W6WixIRji
+      fI6kFR5qm7YwLYPpFbh8RyeBsQKBgQD2iYcEvclCd5WmNu8xbxR83owDqjXh/85W
+      kUIlktcHzVXXT4YKfP36ptSPRiNEaKQMlSGc0JQgQiImFaEfY7PBZOn3pWRu03Lb
+      sre12cb5MgxCSr2ABIXr+sVo06SPzqXQxrAWoLBG4+BmyzEesjo2Bu/2bxPXEL3f
+      Rtuz5MO+gQKBgQCUiwjtOIz6ZMUwfJUpHa6b7uBFvjUach9OF0vBPIhcsd6XirS/
+      jqwCebxp3dVN1GpinRVgCnUWFYcttK2eweN/l+7RXl2qx/ThXiQmwILDwPNao4Mr
+      /bB1eLFUw4bd8tSv+doUgV7NUc3GK7rcn3nZac9XyZqn32WSm0tqL8iCgQKBgECO
+      aJ2UOMQ/3h7lGaM/LAU6nT1Eb9GbE2PVq5V9KvNvEEBOIZJTgooE73oI6qk6IWLu
+      Fhwi/faoepqwZT179RD6JM3lMDRZCCWBWduziAeu1Ejzm0WPaaYOR20YpmnFueO+
+      c1Ophh86AoPIRzd7ggStsl48XdyeFKoHuvYTPDKBAoGBAMnVqHlHpRjPQ77pU9Y2
+      xnn9tzARjTC4tBi2vAu4QIOTZ13QxylbpYKVNHe692/KNLDEBi85mNiTWK8Kgnq6
+      Y2gFcSCCoi74oZ+y1OL1Nu6CcZxpiniFK5CAyZ7zyQRC2FMLzxxG58tuJhwYpEpD
+      yjFKbiyCGCmBNCAnTcY7Angv
+      -----END PRIVATE KEY-----
+
+existingCerts:
+  enabled: true
+  data:
+    root_ca.crt: |
+      -----BEGIN CERTIFICATE-----
+      MIID6TCCAtGgAwIBAgIUD1ic4yfjNLRtokS49/QXR/K5XkAwDQYJKoZIhvcNAQEL
+      BQAwgYMxCzAJBgNVBAYTAkRFMRowGAYDVQQHDBFGcmFua2Z1cnQgYW0gTWFpbjEn
+      MCUGA1UECgweTkVUV09SWFMgQ2VydGlmaWNhdGUgQXV0aG9yaXR5MS8wLQYDVQQD
+      DCZORVRXT1JYUyBDZXJ0aWZpY2F0ZSBBdXRob3JpdHkgUm9vdCBDQTAeFw0yNDAy
+      MTQxNzAwMTlaFw0zNDAyMTExNzAwMTlaMIGDMQswCQYDVQQGEwJERTEaMBgGA1UE
+      BwwRRnJhbmtmdXJ0IGFtIE1haW4xJzAlBgNVBAoMHk5FVFdPUlhTIENlcnRpZmlj
+      YXRlIEF1dGhvcml0eTEvMC0GA1UEAwwmTkVUV09SWFMgQ2VydGlmaWNhdGUgQXV0
+      aG9yaXR5IFJvb3QgQ0EwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDs
+      UYC0ZtQW156un8co5UnQy93jGZzVn34WkKL7Gqq8ywL/1tq6fjWZvwss9RX76nGe
+      N8tLr+sDzzujFUAZKMVC99s67Z/6fmKW3Mpn1AS/fs2+5NG6mvgwQL/faC1OxpJX
+      MLmtAzPBy8wjjfRoECYae5S1Ib83xa48LysZ3qfIjrDM38/1Nz17pfwp1n8qjvF7
+      NprfT7urMVwnxK4sfqqieYyBj4Uy961AIfFzwBzZC6iaw9jQjp7v1wF55iiUAZP4
+      GNbEYA0x/UkLGk5myzvyAtK8/dAdn7OrktqqZnSHfpc+UfjydMx3U5T2YG7Yz2+0
+      RkbxCQa4iPrfr8ua/LgxAgMBAAGjUzBRMB0GA1UdDgQWBBRmoBL+0hbW8o/jGOQl
+      zRKC9eGRdTAfBgNVHSMEGDAWgBRmoBL+0hbW8o/jGOQlzRKC9eGRdTAPBgNVHRMB
+      Af8EBTADAQH/MA0GCSqGSIb3DQEBCwUAA4IBAQBzDKmTWIP6sPvAJfZ8l9OYZlCz
+      xmy1ijNkKaY3uKJERUY0e0njgJrZsfYtZ4BARuP7Akpp1TQB6yb7NcXhaUbGqv7W
+      mQcVoziFGi0PM1jycnjcKgT20aqTTIeN2/Tda3km9nfLdsjbrHqEB+l4vrxvbu08
+      Jw75TOgcZoENkcbqLt6rRsUTwSK4NKCKVZfJh+U6sFC5ze2OyUKgvi0/w5RDTyRo
+      odAkv/rCcDQooUZ7zH2+QKiDnU+uBdZdJxBkyQaz1I1/tqybGi9U0Jq9E/7XJTyA
+      t3h1O4JkYhcaNUJOqeC/7H1K8ebqkJC5ilHRc18B0ZjyEgFKN3qdxR9ky6IJ
+      -----END CERTIFICATE-----
+    ca.crt: |
+      -----BEGIN CERTIFICATE-----
+      MIIDiTCCAnGgAwIBAgIUYBesnlyUBtpkaPcZzILA1aTpu8swDQYJKoZIhvcNAQEL
+      BQAwgYMxCzAJBgNVBAYTAkRFMRowGAYDVQQHDBFGcmFua2Z1cnQgYW0gTWFpbjEn
+      MCUGA1UECgweTkVUV09SWFMgQ2VydGlmaWNhdGUgQXV0aG9yaXR5MS8wLQYDVQQD
+      DCZORVRXT1JYUyBDZXJ0aWZpY2F0ZSBBdXRob3JpdHkgUm9vdCBDQTAeFw0yNDAy
+      MTQxNzExMzRaFw0zNDAyMTExNzExMzRaMBgxFjAUBgNVBAMMDU5FVFdPUlhTIEdt
+      YkgwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCvLvXs6SpGRvPwGxmW
+      zoCjQ8tz9XsNuaI5OU2wlv9MwZv+AuMLhYeKPi/69mTBtg1WxXY3H7iwPpTCSMo8
+      fWfFaypT5rWMqrfUUpgL7sCu003SRslizezRY+4b3MHVKkzl6QBMc2cpW5/6BTv5
+      1DMSWeD7N8F3UfcPg3d4wyhvP67ABSa2Lj8xa/hzya7k7y01M67hSOZ5++5ObJ4z
+      M70Z+fXqJ0/TNrrzOjdyYotLf7YKrrUB4X+o1Gwxn0zvQ/4INBC1jT30tMR1ELEC
+      fHt+H2Mf63alKsigVNtw88bbrMkzXdI2KXgoRoz0k5UrXlfP1Esk5jM64Vri0WLM
+      tNFNAgMBAAGjXzBdMBsGA1UdEQQUMBKCECoubmV0d29yeHMubG9jYWwwHQYDVR0O
+      BBYEFNWCs/n7PUT45lV08BBz/6KRsuv3MB8GA1UdIwQYMBaAFGagEv7SFtbyj+MY
+      5CXNEoL14ZF1MA0GCSqGSIb3DQEBCwUAA4IBAQAo8fnnh4q03ZXF5z9xBLaPkulO
+      F2m3hjlEK4bcTDHuNCiUrd5IilYYRHrsprDCvXRb1LXTS0xB1BHLpCmccaWvhdFG
+      jHclH4flCtK2Lg1Aej3ewbccmdlIYA7EMNTJrg9p21abpahqEK3vkwXQfoBLEgAb
+      cw8f5AmbbgBPOCEyQ74eOUbDgW3Vog5QZHIX/sFDuI+n3akQHP+lrS7B/reB+U+M
+      kv/2hr87FFpE6iz20YweO0kk0aaspxyTCpIuo0t5Nx2tNrXaQX8EyDtMXu/11tGV
+      N6Zi3fzHo0IO8FqqKxDiFhnzQLjsGetS/SLj1ir/u/Fx65aR+X18oHdPZTox
+      -----END CERTIFICATE-----
+
+  #   ca-other2-cross-signed.crt: "-----BEGIN CERTIFICATE-----...."
+  #   ca-other3-cross-signed.crt: "-----BEGIN CERTIFICATE-----...."
+
+stepConfig:
+  enabled: true
+
+  address: "0.0.0.0:9000"
+
+  dnsName: step.networxs.local
+
+  # additionalDNSNames:
+  #   - localhost
+
+  root: /home/step/certs/root_ca.crt
+  crt: /home/step/certs/ca.crt
+  key: /home/step/secrets/ca.key
+
+  federatedRoots:
+    - /home/step/certs/ca.crt
+
+  # federatedRoots:
+  #   - /home/step/certs/ca.crt
+  #   - /home/step/certs/acme.beta.example.com-xsigned-by-acme.alpha.example.com
+
+  db:
+    badgerFileLoadingMode: ""
+    dataSource: /home/step/db
+    type: badgerv2
+
+  tls:
+    cipherSuites:
+      - TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256
+    maxVersion: 1.3
+    minVersion: 1.2
+    renegotiation: false
+
+  logger:
+    format: text
+
+  authority:
+    claims:
+      maxTLSCertDuration: 87701h
+
+    jwk: |-
+      {
+        "type": "JWK",
+        "name": "markus",
+        "key": {
+          "use": "sig",
+          "kty": "EC",
+          "kid": "vJlYgIWIfMfs2TKilj2f1QlfXrxs8XcEMtDyh4UiPNY",
+          "crv": "P-256",
+          "alg": "ES256",
+          "x": "Na9r3Jp4fJJDy6PKLh1pgzCqG5YAIJlJT6ENuI4oXVo",
+          "y": "Uc56EROcGcGGst5NEK7QsM3wAGv-5xKFK1z1Nl17ars"
+        },
+        "encryptedKey": "eyJhbGciOiJQQkVTMi1IUzI1NitBMTI4S1ciLCJjdHkiOiJqd2sranNvbiIsImVuYyI6IkEyNTZHQ00iLCJwMmMiOjYwMDAwMCwicDJzIjoieU1NMmNsZUxIQzc5ZlByMmdFbld0dyJ9.ZQngaHmXE07Luv2-FMyrKT2bZ_-040npoLJErSPNzkC2xCVNIYZthg.TvFLatC_mok-GHtt.UeWI51J8WzQxtpvynD8LAUqKmIjJHfAEjQvUuMao96oDGZh3fObP3fiRT8Sgc2un0jaCzxanrtxYRYHR-AV3wJlEAMyaVwASer1iAXi8wwQZ3UfTODqydiIlLRA8m2Gy4ryPhlSGaLOmO0PjultA6O1Z4YpP5myp1xP972Whk4IWfeokMIJEcgISoRhLtSon_bx14jpHqVfl3NSk9wLekW85u1tkSPX-U7Y0GWV5ZZc-jLmqy3JZC_iqs_KnKJ73atYj5ybsF-oXonpJ7laCg2HVd9-4txFiNstlkTZnwbkOReauWOCrcriYTD8LRlflvRGEhdC3ONiYc4RZ5hk.WpdWk8NIyrITyga3O2mB1Q"
+      }
+
+    acme:
+      name: keycloakteams
+
+      claims:
+        allowRenewalAfterExpiry: false
+        defaultTLSCertDuration: 2160h
+        disableRenewal: false
+        maxTLSCertDuration: 2160h
+        minTLSCertDuration: 60s
+
+      dpop:
+        key: LS0tLS1CRUdJTiBQUklWQVRFIEtFWS0tLS0tCk1JSUV2Z0lCQURBTkJna3Foa2lHOXcwQkFRRUZBQVNDQktnd2dnU2tBZ0VBQW9JQkFRRHNVWUMwWnRRVzE1NnUKbjhjbzVVblF5OTNqR1p6Vm4zNFdrS0w3R3FxOHl3TC8xdHE2ZmpXWnZ3c3M5Ulg3Nm5HZU44dExyK3NEenp1agpGVUFaS01WQzk5czY3Wi82Zm1LVzNNcG4xQVMvZnMyKzVORzZtdmd3UUwvZmFDMU94cEpYTUxtdEF6UEJ5OHdqCmpmUm9FQ1lhZTVTMUliODN4YTQ4THlzWjNxZklqckRNMzgvMU56MTdwZndwMW44cWp2RjdOcHJmVDd1ck1Wd24KeEs0c2ZxcWllWXlCajRVeTk2MUFJZkZ6d0J6WkM2aWF3OWpRanA3djF3RjU1aWlVQVpQNEdOYkVZQTB4L1VrTApHazVteXp2eUF0SzgvZEFkbjdPcmt0cXFablNIZnBjK1VmanlkTXgzVTVUMllHN1l6MiswUmtieENRYTRpUHJmCnI4dWEvTGd4QWdNQkFBRUNnZ0VBRE10bjNMeVJnSkFaZ1FwWkNkT0tNTklNMkNJWG5mQkY3eHBUSEtYSHR6T0YKbk16bzZENXpqL2lxTmZ1cC9rcmw3bU5HY0RsY3o4YTlTNW5YcjlVSGd4WHd5bXE1cGVJSVcvTWx5VVBQSXdBTwpTeWJQM1JyTlU2MTV4Zko1dTRGZ1JIUzRwTStlMG9BQ2RDMVlIWGM4WE9ReWU3RVJUWWQ0SkwySUI1MUl0OEM1Cld3Vld5bHFMbjFxN1o2SEs1UElQVHFOR3VSMEEyS1VaWkJSK3ZqN3ZsbUo4NEkyUUkrTFlDYTRCZDBSWnZEZ2EKTzZNbnZKbXlRUzVDekNtT3BwaGJLV1MyeEdzczBnWE5RZkNkNjZJVU9NeTNNUFFlVVUxUmZGZ0hUR2owajlIUQpELzFPTFd6SlRaOEdRSkRRektzUkY5MzA1a2VrWk40c2M3RS9zOTUrQVFLQmdRRDFZNUNtY1c0OEdjOFlVM1d2CnNVWE9IWnQzdEdQbE05ZFNmQ3A5U3FoWi9tdS9PSnRaWWN3dGR6RHBGLy9lWjRHUmVKZU1KLzFScjFqQzV5T1gKTTVZVUdvWXRhUXdXVm1wTkNwNVBBNFVwL21UWDd0alFrRkRjek9LY0krYlJQWUFZZGNRYk9rM1c2V2l4SVJqaQpmSTZrRlI1cW03WXdMWVBwRmJoOFJ5ZUJzUUtCZ1FEMmlZY0V2Y2xDZDVXbU51OHhieFI4M293RHFqWGgvODVXCmtVSWxrdGNIelZYWFQ0WUtmUDM2cHRTUFJpTkVhS1FNbFNHYzBKUWdRaUltRmFFZlk3UEJaT24zcFdSdTAzTGIKc3JlMTJjYjVNZ3hDU3IyQUJJWHIrc1ZvMDZTUHpxWFF4ckFXb0xCRzQrQm15ekVlc2pvMkJ1LzJieFBYRUwzZgpSdHV6NU1PK2dRS0JnUUNVaXdqdE9JejZaTVV3ZkpVcEhhNmI3dUJGdmpVYWNoOU9GMHZCUEloY3NkNlhpclMvCmpxd0NlYnhwM2RWTjFHcGluUlZnQ25VV0ZZY3R0SzJld2VOL2wrN1JYbDJxeC9UaFhpUW13SUxEd1BOYW80TXIKL2JCMWVMRlV3NGJkOHRTditkb1VnVjdOVWMzR0s3cmNuM25aYWM5WHlacW4zMldTbTB0cUw4aUNnUUtCZ0VDTwphSjJVT01RLzNoN2xHYU0vTEFVNm5UMUViOUdiRTJQVnE1VjlLdk52RUVCT0laSlRnb29FNzNvSTZxazZJV0x1CkZod2kvZmFvZXBxd1pUMTc5UkQ2Sk0zbE1EUlpDQ1dCV2R1emlBZXUxRWp6bTBXUGFhWU9SMjBZcG1uRnVlTysKYzFPcGhoODZBb1BJUnpkN2dnU3RzbDQ4WGR5ZUZLb0h1dllUUERLQkFvR0JBTW5WcUhsSHBSalBRNzdwVTlZMgp4bm45dHpBUmpUQzR0QmkydkF1NFFJT1RaMTNReHlsYnBZS1ZOSGU2OTIvS05MREVCaTg1bU5pVFdLOEtnbnE2ClkyZ0ZjU0NDb2k3NG9aK3kxT0wxTnU2Q2NaeHBpbmlGSzVDQXlaN3p5UVJDMkZNTHp4eEc1OHR1Smh3WXBFcEQKeWpGS2JpeUNHQ21CTkNBblRjWTdBbmd2Ci0tLS0tRU5EIFBSSVZBVEUgS0VZLS0tLS0K
+
+      # dpop:
+      #   key: |
+      #     -----BEGIN PRIVATE KEY-----
+      #     MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDsUYC0ZtQW156u
+      #     n8co5UnQy93jGZzVn34WkKL7Gqq8ywL/1tq6fjWZvwss9RX76nGeN8tLr+sDzzuj
+      #     FUAZKMVC99s67Z/6fmKW3Mpn1AS/fs2+5NG6mvgwQL/faC1OxpJXMLmtAzPBy8wj
+      #     jfRoECYae5S1Ib83xa48LysZ3qfIjrDM38/1Nz17pfwp1n8qjvF7NprfT7urMVwn
+      #     xK4sfqqieYyBj4Uy961AIfFzwBzZC6iaw9jQjp7v1wF55iiUAZP4GNbEYA0x/UkL
+      #     Gk5myzvyAtK8/dAdn7OrktqqZnSHfpc+UfjydMx3U5T2YG7Yz2+0RkbxCQa4iPrf
+      #     r8ua/LgxAgMBAAECggEADMtn3LyRgJAZgQpZCdOKMNIM2CIXnfBF7xpTHKXHtzOF
+      #     nMzo6D5zj/iqNfup/krl7mNGcDlcz8a9S5nXr9UHgxXwymq5peIIW/MlyUPPIwAO
+      #     SybP3RrNU615xfJ5u4FgRHS4pM+e0oACdC1YHXc8XOQye7ERTYd4JL2IB51It8C5
+      #     WwVWylqLn1q7Z6HK5PIPTqNGuR0A2KUZZBR+vj7vlmJ84I2QI+LYCa4Bd0RZvDga
+      #     O6MnvJmyQS5CzCmOpphbKWS2xGss0gXNQfCd66IUOMy3MPQeUU1RfFgHTGj0j9HQ
+      #     D/1OLWzJTZ8GQJDQzKsRF9305kekZN4sc7E/s95+AQKBgQD1Y5CmcW48Gc8YU3Wv
+      #     sUXOHZt3tGPlM9dSfCp9SqhZ/mu/OJtZYcwtdzDpF//eZ4GReJeMJ/1Rr1jC5yOX
+      #     M5YUGoYtaQwWVmpNCp5PA4Up/mTX7tjQkFDczOKcI+bRPYAYdcQbOk3W6WixIRji
+      #     fI6kFR5qm7YwLYPpFbh8RyeBsQKBgQD2iYcEvclCd5WmNu8xbxR83owDqjXh/85W
+      #     kUIlktcHzVXXT4YKfP36ptSPRiNEaKQMlSGc0JQgQiImFaEfY7PBZOn3pWRu03Lb
+      #     sre12cb5MgxCSr2ABIXr+sVo06SPzqXQxrAWoLBG4+BmyzEesjo2Bu/2bxPXEL3f
+      #     Rtuz5MO+gQKBgQCUiwjtOIz6ZMUwfJUpHa6b7uBFvjUach9OF0vBPIhcsd6XirS/
+      #     jqwCebxp3dVN1GpinRVgCnUWFYcttK2eweN/l+7RXl2qx/ThXiQmwILDwPNao4Mr
+      #     /bB1eLFUw4bd8tSv+doUgV7NUc3GK7rcn3nZac9XyZqn32WSm0tqL8iCgQKBgECO
+      #     aJ2UOMQ/3h7lGaM/LAU6nT1Eb9GbE2PVq5V9KvNvEEBOIZJTgooE73oI6qk6IWLu
+      #     Fhwi/faoepqwZT179RD6JM3lMDRZCCWBWduziAeu1Ejzm0WPaaYOR20YpmnFueO+
+      #     c1Ophh86AoPIRzd7ggStsl48XdyeFKoHuvYTPDKBAoGBAMnVqHlHpRjPQ77pU9Y2
+      #     xnn9tzARjTC4tBi2vAu4QIOTZ13QxylbpYKVNHe692/KNLDEBi85mNiTWK8Kgnq6
+      #     Y2gFcSCCoi74oZ+y1OL1Nu6CcZxpiniFK5CAyZ7zyQRC2FMLzxxG58tuJhwYpEpD
+      #     yjFKbiyCGCmBNCAnTcY7Angv
+      #     -----END PRIVATE KEY-----
+      #   wireDomain: step.networxs.local
+
+      oidc:
+        clientId: wireapp
+        discoveryBaseUrl: https://keycloak.networxs.local/auth/realms/master
+        issuerUrl: https://keycloak.networxs.local/auth/realms/master?client_id=wireapp
+        signatureAlgorithms:
+          - RS256
+          - ES256
+          - ES384
+          - EdDSA
+        transform: |
+          {
+          "name": "{{ .name }}",
+          "preferred_username": "wireapp://%40{{ .preferred_username }}"
+          }
+
+      x509:
+        organization: step.networxs.local
+        template: |
+          {
+            "subject": {
+                "organization": {{ required "stepConfig.authority.acme.x509.organization is missing" .Values.stepConfig.authority.acme.x509.organization | toJson }},
+                "commonName": {{ "{{" }} toJson .Oidc.name {{ "}}" }}
+            },
+            "uris": [{{ "{{" }} toJson .Oidc.preferred_username {{ "}}" }}, {{ "{{" }} toJson .Dpop.sub {{ "}}" }}],
+            "keyUsage": ["digitalSignature"],
+            "extKeyUsage": ["clientAuth"],
+            "crlDistributionPoints": {{ tpl "[ https://{{ required \"stepConfig.dnsName is missing\" .Values.stepConfig.dnsName }}/crl ]" . | fromYamlArray | toJson }}
+          }
+
+  configTemplate: |-
+    address: {{ required "stepConfig.address is missing" .Values.stepConfig.address }}
+
+    dnsNames:
+      - {{ required "stepConfig.dnsName is missing" .Values.stepConfig.dnsName }}
+      {{- if .Values.stepConfig.additionalDNSNames }}
+      {{- .Values.stepConfig.additionalDNSNames | toYaml | nindent 2 }}
+      {{- end }}
+
+    crt: {{ required "stepConfig.crt is missing" .Values.stepConfig.crt }}
+    key: {{ required "stepConfig.key is missing" .Values.stepConfig.key }}
+    root: {{ required "stepConfig.root is missing" .Values.stepConfig.root }}
+
+    federatedRoots:
+      {{- required "stepConfig.federatedRoots is missing" .Values.stepConfig.federatedRoots | toYaml | nindent 2 }}
+
+    crl:
+      enabled: false
+      generateOnRevoke: true
+      idpURL: https://{{ required "stepConfig.dnsName is missing" .Values.stepConfig.dnsName }}/crl
+
+    db:
+      {{ required "stepConfig.db is missing" .Values.stepConfig.db | toYaml | nindent 2 }}
+
+    tls:
+      {{ required "stepConfig.tls is missing" .Values.stepConfig.tls | toYaml | nindent 2 }}
+
+    logger:
+      {{ required "stepConfig.logger is missing" .Values.stepConfig.logger | toYaml | nindent 2 }}
+
+    authority:
+      claims:
+        {{ required "stepConfig.authority.claims is missing" .Values.stepConfig.authority.claims | toYaml | nindent 4 }}
+      provisioners:
+        - {{ required "stepConfig.authority.jwk is missing" .Values.stepConfig.authority.jwk | fromJson | toYaml | nindent 6 }}
+        - name: {{ required "stepConfig.authority.acme.name is missing" .Values.stepConfig.authority.acme.name }}
+          type: ACME
+          forceCN: true
+          challenges: 
+          - wire-oidc-01
+          - wire-dpop-01
+          claims:
+            {{ required "stepConfig.authority.acme.claims is missing" .Values.stepConfig.authority.acme.claims | toYaml | nindent 8 }} 
+          options:
+            wire:
+              dpop:
+                key: {{ required "stepConfig.authority.acme.dpop.key is missing" .Values.stepConfig.authority.acme.dpop.key }}
+                target: https://{{ required "stepConfig.authority.acme.dpop.wireDomain" .Values.stepConfig.authority.acme.dpop.wireDomain }}/clients/{{ "{{" }}.DeviceID{{ "}}" }}/access-token
+              oidc:
+                config:
+                  clientId: {{ required "stepConfig.authority.acme.oidc.clientId is missing" .Values.stepConfig.authority.acme.oidc.clientId }}
+                  signatureAlgorithms:
+                    {{ required "stepConfig.authority.acme.oidc.signatureAlgorithms is missing" .Values.stepConfig.authority.acme.oidc.signatureAlgorithms | toYaml | nindent 14 }}
+                provider:
+                  discoveryBaseUrl: {{ required "stepConfig.authority.acme.oidc.discoveryBaseUrl is missing" .Values.stepConfig.authority.acme.oidc.discoveryBaseUrl }}
+                  id_token_signing_alg_values_supported:
+                    {{ required "stepConfig.authority.acme.oidc.signatureAlgorithms is missing" .Values.stepConfig.authority.acme.oidc.signatureAlgorithms | toYaml | nindent 14 }}
+                  issuerUrl: {{ required "stepConfig.authority.acme.oidc.issuerUrl is missing" .Values.stepConfig.authority.acme.oidc.issuerUrl }}
+                transform: {{ required "stepConfig.authority.acme.oidc.transform is missing" .Values.stepConfig.authority.acme.oidc.transform | toJson }}
+            x509:
+              template: {{ (tpl .Values.stepConfig.authority.acme.x509.template .) | toJson }}
+
+    {{- if .Values.stepConfig.extraConfig }}
+    {{ .Values.stepConfig.extraconfig | toYaml }}
+    {{- end }}

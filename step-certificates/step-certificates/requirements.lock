@@ -1,0 +1,6 @@
+dependencies:
+- name: step-certificates
+  repository: https://smallstep.github.io/helm-charts
+  version: 1.27.4
+digest: sha256:72e3ec7ba53c3c3547f5d7d39e60d816ad4328e8f8d88373893ac65f7d5df5ac
+generated: "2024-09-26T14:30:27.486354329Z"
