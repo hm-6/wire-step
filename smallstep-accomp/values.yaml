@@ -36,32 +36,7 @@ existingSecrets:
   data:
     ca.key: |
       -----BEGIN PRIVATE KEY-----
-      MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDsUYC0ZtQW156u
-      n8co5UnQy93jGZzVn34WkKL7Gqq8ywL/1tq6fjWZvwss9RX76nGeN8tLr+sDzzuj
-      FUAZKMVC99s67Z/6fmKW3Mpn1AS/fs2+5NG6mvgwQL/faC1OxpJXMLmtAzPBy8wj
-      jfRoECYae5S1Ib83xa48LysZ3qfIjrDM38/1Nz17pfwp1n8qjvF7NprfT7urMVwn
-      xK4sfqqieYyBj4Uy961AIfFzwBzZC6iaw9jQjp7v1wF55iiUAZP4GNbEYA0x/UkL
-      Gk5myzvyAtK8/dAdn7OrktqqZnSHfpc+UfjydMx3U5T2YG7Yz2+0RkbxCQa4iPrf
-      r8ua/LgxAgMBAAECggEADMtn3LyRgJAZgQpZCdOKMNIM2CIXnfBF7xpTHKXHtzOF
-      nMzo6D5zj/iqNfup/krl7mNGcDlcz8a9S5nXr9UHgxXwymq5peIIW/MlyUPPIwAO
-      SybP3RrNU615xfJ5u4FgRHS4pM+e0oACdC1YHXc8XOQye7ERTYd4JL2IB51It8C5
-      WwVWylqLn1q7Z6HK5PIPTqNGuR0A2KUZZBR+vj7vlmJ84I2QI+LYCa4Bd0RZvDga
-      O6MnvJmyQS5CzCmOpphbKWS2xGss0gXNQfCd66IUOMy3MPQeUU1RfFgHTGj0j9HQ
-      D/1OLWzJTZ8GQJDQzKsRF9305kekZN4sc7E/s95+AQKBgQD1Y5CmcW48Gc8YU3Wv
-      sUXOHZt3tGPlM9dSfCp9SqhZ/mu/OJtZYcwtdzDpF//eZ4GReJeMJ/1Rr1jC5yOX
-      M5YUGoYtaQwWVmpNCp5PA4Up/mTX7tjQkFDczOKcI+bRPYAYdcQbOk3W6WixIRji
-      fI6kFR5qm7YwLYPpFbh8RyeBsQKBgQD2iYcEvclCd5WmNu8xbxR83owDqjXh/85W
-      kUIlktcHzVXXT4YKfP36ptSPRiNEaKQMlSGc0JQgQiImFaEfY7PBZOn3pWRu03Lb
-      sre12cb5MgxCSr2ABIXr+sVo06SPzqXQxrAWoLBG4+BmyzEesjo2Bu/2bxPXEL3f
-      Rtuz5MO+gQKBgQCUiwjtOIz6ZMUwfJUpHa6b7uBFvjUach9OF0vBPIhcsd6XirS/
-      jqwCebxp3dVN1GpinRVgCnUWFYcttK2eweN/l+7RXl2qx/ThXiQmwILDwPNao4Mr
-      /bB1eLFUw4bd8tSv+doUgV7NUc3GK7rcn3nZac9XyZqn32WSm0tqL8iCgQKBgECO
-      aJ2UOMQ/3h7lGaM/LAU6nT1Eb9GbE2PVq5V9KvNvEEBOIZJTgooE73oI6qk6IWLu
-      Fhwi/faoepqwZT179RD6JM3lMDRZCCWBWduziAeu1Ejzm0WPaaYOR20YpmnFueO+
-      c1Ophh86AoPIRzd7ggStsl48XdyeFKoHuvYTPDKBAoGBAMnVqHlHpRjPQ77pU9Y2
-      xnn9tzARjTC4tBi2vAu4QIOTZ13QxylbpYKVNHe692/KNLDEBi85mNiTWK8Kgnq6
-      Y2gFcSCCoi74oZ+y1OL1Nu6CcZxpiniFK5CAyZ7zyQRC2FMLzxxG58tuJhwYpEpD
-      yjFKbiyCGCmBNCAnTcY7Angv
+      ...
       -----END PRIVATE KEY-----
 
 existingCerts:
@@ -189,32 +164,7 @@ stepConfig:
       # dpop:
       #   key: |
       #     -----BEGIN PRIVATE KEY-----
-      #     MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDsUYC0ZtQW156u
-      #     n8co5UnQy93jGZzVn34WkKL7Gqq8ywL/1tq6fjWZvwss9RX76nGeN8tLr+sDzzuj
-      #     FUAZKMVC99s67Z/6fmKW3Mpn1AS/fs2+5NG6mvgwQL/faC1OxpJXMLmtAzPBy8wj
-      #     jfRoECYae5S1Ib83xa48LysZ3qfIjrDM38/1Nz17pfwp1n8qjvF7NprfT7urMVwn
-      #     xK4sfqqieYyBj4Uy961AIfFzwBzZC6iaw9jQjp7v1wF55iiUAZP4GNbEYA0x/UkL
-      #     Gk5myzvyAtK8/dAdn7OrktqqZnSHfpc+UfjydMx3U5T2YG7Yz2+0RkbxCQa4iPrf
-      #     r8ua/LgxAgMBAAECggEADMtn3LyRgJAZgQpZCdOKMNIM2CIXnfBF7xpTHKXHtzOF
-      #     nMzo6D5zj/iqNfup/krl7mNGcDlcz8a9S5nXr9UHgxXwymq5peIIW/MlyUPPIwAO
-      #     SybP3RrNU615xfJ5u4FgRHS4pM+e0oACdC1YHXc8XOQye7ERTYd4JL2IB51It8C5
-      #     WwVWylqLn1q7Z6HK5PIPTqNGuR0A2KUZZBR+vj7vlmJ84I2QI+LYCa4Bd0RZvDga
-      #     O6MnvJmyQS5CzCmOpphbKWS2xGss0gXNQfCd66IUOMy3MPQeUU1RfFgHTGj0j9HQ
-      #     D/1OLWzJTZ8GQJDQzKsRF9305kekZN4sc7E/s95+AQKBgQD1Y5CmcW48Gc8YU3Wv
-      #     sUXOHZt3tGPlM9dSfCp9SqhZ/mu/OJtZYcwtdzDpF//eZ4GReJeMJ/1Rr1jC5yOX
-      #     M5YUGoYtaQwWVmpNCp5PA4Up/mTX7tjQkFDczOKcI+bRPYAYdcQbOk3W6WixIRji
-      #     fI6kFR5qm7YwLYPpFbh8RyeBsQKBgQD2iYcEvclCd5WmNu8xbxR83owDqjXh/85W
-      #     kUIlktcHzVXXT4YKfP36ptSPRiNEaKQMlSGc0JQgQiImFaEfY7PBZOn3pWRu03Lb
-      #     sre12cb5MgxCSr2ABIXr+sVo06SPzqXQxrAWoLBG4+BmyzEesjo2Bu/2bxPXEL3f
-      #     Rtuz5MO+gQKBgQCUiwjtOIz6ZMUwfJUpHa6b7uBFvjUach9OF0vBPIhcsd6XirS/
-      #     jqwCebxp3dVN1GpinRVgCnUWFYcttK2eweN/l+7RXl2qx/ThXiQmwILDwPNao4Mr
-      #     /bB1eLFUw4bd8tSv+doUgV7NUc3GK7rcn3nZac9XyZqn32WSm0tqL8iCgQKBgECO
-      #     aJ2UOMQ/3h7lGaM/LAU6nT1Eb9GbE2PVq5V9KvNvEEBOIZJTgooE73oI6qk6IWLu
-      #     Fhwi/faoepqwZT179RD6JM3lMDRZCCWBWduziAeu1Ejzm0WPaaYOR20YpmnFueO+
-      #     c1Ophh86AoPIRzd7ggStsl48XdyeFKoHuvYTPDKBAoGBAMnVqHlHpRjPQ77pU9Y2
-      #     xnn9tzARjTC4tBi2vAu4QIOTZ13QxylbpYKVNHe692/KNLDEBi85mNiTWK8Kgnq6
-      #     Y2gFcSCCoi74oZ+y1OL1Nu6CcZxpiniFK5CAyZ7zyQRC2FMLzxxG58tuJhwYpEpD
-      #     yjFKbiyCGCmBNCAnTcY7Angv
+        #   ...
       #     -----END PRIVATE KEY-----
       #   wireDomain: step.networxs.local
 
